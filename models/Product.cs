@@ -2,17 +2,27 @@ using System;
 
 namespace mag.models
 {
-    public class Product
+    public sealed class Product
     {
-        string _name;
-        public Product(int i)
+        private static Product _obj;
+        public string _name { get; set; }
+        private Product(string i)
         {   
-            Console.WriteLine("The number is: " + i + " and Name: " + _name);
+            _name = i;
+            Console.WriteLine("The number is: " + i + " and Name: ");
         }
 
         public void setName(string name)
         {
             _name = name;
+        }
+
+        public static Product createProduct(string id)
+        {
+            if(_obj != null)
+                return _obj;
+    
+            return _obj = new Product(id);
         }
     }
 }
